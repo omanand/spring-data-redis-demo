@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- Appenders -->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p: %c - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="fileAppender" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="file" value="logs/spring-data-redis-demo.log"/>
+        <param name="append" value="true"/>
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="logs/spring-data-redis-demo.log.%d{yyyy-MM-dd}.gz"/>
+            <param name="ActiveFileName" value="logs/spring-data-redis-demo.log"/>
+        </rollingPolicy>
+        <layout class="org.apache.log4j.EnhancedPatternLayout">
+            <param name="ConversionPattern" value="%d{yyMMdd HH:mm:ss,SSS} [%t] %-5p %c %X %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- 3rdparty Loggers -->
+    <logger name="org.springframework">
+        <level value="warn"/>
+    </logger>
+
+    <logger name="org.springframework.data">
+        <level value="warn"/>
+    </logger>
+
+    <logger name="com.redis.dictionary">
+        <level value="debug"/>
+    </logger>
+
+
+    <!-- Root Logger -->
+    <root>
+        <priority value="info"/>
+        <appender-ref ref="console"/>
+        <appender-ref ref="fileAppender"/>
+    </root>
+
+</log4j:configuration>
