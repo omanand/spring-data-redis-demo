@@ -31,7 +31,7 @@
         <level value="warn"/>
     </logger>
 
-    <logger name="com.redis.dictionary">
+    <logger name="com.wordpress.omanand">
         <level value="debug"/>
     </logger>
 
